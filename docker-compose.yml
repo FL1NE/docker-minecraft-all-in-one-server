@@ -1,14 +1,16 @@
 version: "3"
 
 services:
+  # Minecraft container actual
   minecraft-server:
     image: itzg/minecraft-server:latest
     container_name: minecraft-server
     ports:
       - 25565:25565
-      - 8123:8123
+      # - 8123:8123
     environment:
       EULA: "TRUE"
+      EXEC_DIRECTLY: "true"
 
       # Server related settings
       VERSION: "LATEST" # LASTEST, SNAPSHOT, or version such like 1.7.9
@@ -37,3 +39,13 @@ services:
       - ./config/dynmap/templates/nether-vlowres.txt:/data/plugins/dynmap/templates/nether-vlowres.txt
       - ./config/dynmap/templates/normal-vlowres.txt:/data/plugins/dynmap/templates/normal-vlowres.txt
       - ./config/dynmap/templates/the_end-vlowres.txt:/data/plugins/dynmap/templates/the_end-vlowres.txt
+
+  # Nginx reverse proxy for wiki and dynmap
+  nginx-reverse-proxy:
+    image: nginx:alpine
+    container_name: nginx-reverse-proxy
+    ports:
+      - 80:80
+    restart: unless-stopped
+    volumes:
+      - ./config/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
