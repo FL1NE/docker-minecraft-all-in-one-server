@@ -34,3 +34,6 @@ services:
       - ./minecraft-data:/data
       # Use config/dynmap/configuration.txt for Dynmap
       - ./config/dynmap/configuration.txt:/data/plugins/dynmap/configuration.txt
+      - ./config/dynmap/templates/nether-vlowres.txt:/data/plugins/dynmap/templates/nether-vlowres.txt
+      - ./config/dynmap/templates/normal-vlowres.txt:/data/plugins/dynmap/templates/normal-vlowres.txt
+      - ./config/dynmap/templates/the_end-vlowres.txt:/data/plugins/dynmap/templates/the_end-vlowres.txt
