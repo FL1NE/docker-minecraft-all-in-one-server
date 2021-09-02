@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  minecraft-server:
+    image: itzg/minecraft-server:latest
+    container_name: minecraft-server
+    ports:
+      - 25565:25565
+      - 8123:8123
+    environment:
+      EULA: "TRUE"
+
+      # Server related settings
+      VERSION: "LATEST" # LASTEST, SNAPSHOT, or version such like 1.7.9
+      TYPE: "SPIGOT"
+      SPIGET_RESOURCES: "274" # 274: Dynmap,
+      MEMORY: "2G"
+
+      # Game related settings
+      DIFFICULTY: normal # Valid values are: peaceful, easy, normal, hard
+      MOTD: "Docker Minecraft All in One Server"
+      SEED: "1785852800490497919"
+      # LEVEL_TYPE: "AMPLIFIED" # AMPLIFIEDはクソ
+      # LEVEL: "world" # You can change mapname to load
+      ALLOW_FLIGHT: "false"
+      MAX_PLAYERS: "16"
+      OPES: "FL1NE" # User1,User2
+
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    volumes:
+      # Save minecraft data to local
+      - ./minecraft-data:/data
+      # Use config/dynmap/configuration.txt for Dynmap
+      - ./config/dynmap/configuration.txt:/data/plugins/dynmap/configuration.txt
