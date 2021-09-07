@@ -1,0 +1,18 @@
+site_name: Docker MineCraft All in One Server
+
+nav:
+  - ホーム: index.md
+  - ルール:
+    - はじめに: rules/introduction.md
+
+theme:
+  name: readthedocs
+  language: 'ja'
+  highlightjs: true
+  hljs_languages:
+      - yaml
+      - rust
+
+extra:
+  search:
+    language: 'jp'
